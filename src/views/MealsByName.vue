@@ -10,43 +10,7 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-5 p-8">
-    <div
-      v-for="meal of meals"
-      :key="meal?.idMeal"
-      class="bg-white shadow rounded-xl pb-3"
-    >
-      <router-link :to="{ name: 'mealDetails', params: { id: meal.idMeal } }">
-        <img
-          :src="meal?.strMealThumb"
-          :alt="meal?.strMeal"
-          class="rounded-t-xl w-full h-64 object-cover"
-        />
-      </router-link>
-
-      <div class="p-3">
-        <router-link :to="{ name: 'mealDetails', params: { id: meal.idMeal } }">
-          <h3 class="font-bold">
-            {{ meal?.strMeal }}
-          </h3>
-
-          <p class="mb-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            cum praesentium eos sit expedita modi minima magni facere placeat
-            vitae!
-          </p>
-        </router-link>
-
-        <div>
-          <a
-            :href="meal?.strYoutube"
-            target="_blank"
-            class="px-3 py-2 rounded border-2 text-white border-red-600 bg-red-500 hover:bg-red-600 transition:colors"
-          >
-            Youtube
-          </a>
-        </div>
-      </div>
-    </div>
+    <MealItem v-for="meal of meals" :key="meal.idMeal" :meal="meal" />
   </div>
 </template>
 
@@ -54,6 +18,7 @@
 import { computed, onMounted, ref } from "vue";
 import axiosClient from "../axiosClient";
 import store from "../store";
+import MealItem from "../components/MealItem.vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();

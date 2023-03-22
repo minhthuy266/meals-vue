@@ -7,17 +7,7 @@
         placeholder="Search for meals"
       />
 
-      <div class="flex gap-2 mt-2">
-        <router-link
-          v-for="(letter, index) of letters"
-          :key="index"
-          :to="{ name: 'byLetter', params: { letter } }"
-        >
-          <span class="mr-1 ml-1">
-            {{ letter }}
-          </span>
-        </router-link>
-      </div>
+      <MealByLetter />
 
       <pre>
         <!-- {{ ingredients }} -->
@@ -30,6 +20,7 @@
 import { computed, onMounted, ref } from "vue";
 import store from "../store";
 import axiosClient from "../axiosClient";
+import MealsByLetter from "./MealsByLetter.vue";
 
 const meals = computed(() => store.state.meals);
 
